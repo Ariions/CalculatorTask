@@ -1,11 +1,18 @@
-#pragma once
+#ifndef VALUE_H
+#define VALUE_H
+
 #include "Inode.h"
 
 class Value : public Inode {
-protected:
+private:
     double value;
+
 public:
     Value(double val);
+    ~Value();
+
     double calc() const override;
     std::string print() const override;
 };
+
+#endif // VALUE_H
