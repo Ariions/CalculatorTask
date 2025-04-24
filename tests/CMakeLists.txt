@@ -14,31 +14,39 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(googletest)
 
-# Gather test source files
-file(GLOB TEST_SOURCES "*.cpp")
-
-# Add test executable
-add_executable(UnitTests
-    TestSum.cpp
-    TestSubstr.cpp
-    MockInputHandler.cpp
-)
-
-# Include main include directory for headers
-target_include_directories(UnitTests PRIVATE ${PROJECT_SOURCE_DIR}/include)
-
-# Link test executable with GTest and your project’s main library (if applicable)
-target_link_libraries(UnitTests gtest gtest_main)
-
-# Optionally link other project source files if not already in a library
-target_sources(UnitTests PRIVATE
-    ${PROJECT_SOURCE_DIR}/src/Value.cpp
+# Add unit tests
+file(GLOB UNIT_TEST_SOURCES "unit/*.cpp") # Automatically include all .cpp files in the unit folder
+add_executable(UnitTests ${UNIT_TEST_SOURCES}
     ${PROJECT_SOURCE_DIR}/src/Operator.cpp
+    ${PROJECT_SOURCE_DIR}/src/Value.cpp
     ${PROJECT_SOURCE_DIR}/src/Parser.cpp
     ${PROJECT_SOURCE_DIR}/src/VariableResolver.cpp
     ${PROJECT_SOURCE_DIR}/src/ExpressionEvaluator.cpp
 )
+target_include_directories(UnitTests PRIVATE ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(UnitTests gtest gtest_main)
 
-# Register the test with CTest
+# Register unit tests with CTest
 include(GoogleTest)
-gtest_discover_tests(UnitTests)
+gtest_discover_tests(UnitTests
+    TEST_PREFIX "Unit."
+    PROPERTIES LABELS "unit"
+)
+
+# Add integration tests
+file(GLOB INTEGRATION_TEST_SOURCES "integration/*.cpp") # Automatically include all .cpp files in the integration folder
+add_executable(IntegrationTests ${INTEGRATION_TEST_SOURCES}
+    ${PROJECT_SOURCE_DIR}/src/ExpressionEvaluator.cpp
+    ${PROJECT_SOURCE_DIR}/src/Operator.cpp
+    ${PROJECT_SOURCE_DIR}/src/Value.cpp
+    ${PROJECT_SOURCE_DIR}/src/Parser.cpp
+    ${PROJECT_SOURCE_DIR}/src/VariableResolver.cpp
+)
+target_include_directories(IntegrationTests PRIVATE ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(IntegrationTests gtest gtest_main)
+
+# Register integration tests with CTest
+gtest_discover_tests(IntegrationTests
+    TEST_PREFIX "Integration."
+    PROPERTIES LABELS "integration"
+)
