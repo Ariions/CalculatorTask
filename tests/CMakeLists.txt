@@ -18,23 +18,25 @@ FetchContent_MakeAvailable(googletest)
 file(GLOB TEST_SOURCES "*.cpp")
 
 # Add test executable
-add_executable(UnitTests ${TEST_SOURCES})
+add_executable(UnitTests
+    TestSum.cpp
+    TestSubstr.cpp
+    MockInputHandler.cpp
+)
 
 # Include main include directory for headers
 target_include_directories(UnitTests PRIVATE ${PROJECT_SOURCE_DIR}/include)
 
 # Link test executable with GTest and your project’s main library (if applicable)
-target_link_libraries(UnitTests gtest_main)
+target_link_libraries(UnitTests gtest gtest_main)
 
 # Optionally link other project source files if not already in a library
 target_sources(UnitTests PRIVATE
     ${PROJECT_SOURCE_DIR}/src/Value.cpp
-    ${PROJECT_SOURCE_DIR}/src/Sum.cpp
-    ${PROJECT_SOURCE_DIR}/src/Sub.cpp
-    ${PROJECT_SOURCE_DIR}/src/Mul.cpp
-    ${PROJECT_SOURCE_DIR}/src/Div.cpp
+    ${PROJECT_SOURCE_DIR}/src/Operator.cpp
     ${PROJECT_SOURCE_DIR}/src/Parser.cpp
     ${PROJECT_SOURCE_DIR}/src/VariableResolver.cpp
+    ${PROJECT_SOURCE_DIR}/src/ExpressionEvaluator.cpp
 )
 
 # Register the test with CTest

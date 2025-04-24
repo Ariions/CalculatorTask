@@ -1,28 +1,23 @@
 #include "../include/Parser.h"
 #include "../include/VariableResolver.h"
-#include <iostream>
+#include "../include/ExpressionEvaluator.h"
+#include "../src/TerminalInput.cpp" // Include the terminal input handler
 #include <map>
 #include <set>
+#include <iostream>
 
 int main() {
-    std::string expression;
-    std::map<std::string, double> variables;
-
-    std::cout << "Enter an expression: ";
-    std::getline(std::cin, expression);
-
     try {
-        VariableResolver resolver;
-        std::set<std::string> extractedVariables = resolver.extractVariables(expression);
-        resolver.resolveVariables(extractedVariables, variables);
+        TerminalInput input;
 
-        Parser parser;
-        Inode* root = parser.parse(expression, variables);
+        // Get the expression
+        std::string expression = input.getExpression();
 
-        std::cout << "Result: " << root->calc() << std::endl;
-        std::cout << "Formatted expression: " << root->print() << std::endl;
+        // Evaluate the expression
+        double result = evaluateExpression(expression, input);
 
-        delete root; // Clean up the dynamically allocated tree
+        // Output the result
+        std::cout << "Result: " << result << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }

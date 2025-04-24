@@ -9,9 +9,6 @@
 
 class Parser {
 public:
-    Parser();
-    ~Parser();
-
     Inode* parse(const std::string& expression, std::map<std::string, double>& variables);
 
 private:

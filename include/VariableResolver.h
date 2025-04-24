@@ -2,20 +2,18 @@
 #ifndef VARIABLERESOLVER_H
 #define VARIABLERESOLVER_H
 
+#include <set>
 #include <string>
 #include <map>
-#include <set>
+#include "IDialogInput.h"
 
 class VariableResolver {
 public:
-    VariableResolver();
-    ~VariableResolver();
-
     // Extract variables from the expression
     std::set<std::string> extractVariables(const std::string& expression);
 
     // Resolve variables by prompting the user for their values
-    void resolveVariables(const std::set<std::string>& variables, std::map<std::string, double>& variableValues);
+    static void resolveVariables(const std::set<std::string>& variables, std::map<std::string, double>& variableValues, const IDialogInput& inputResolver);
 };
 
 #endif // VARIABLERESOLVER_H

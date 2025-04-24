@@ -9,7 +9,6 @@ private:
 
 public:
     Value(double val);
-    ~Value();
 
     double calc() const override;
     std::string print() const override;

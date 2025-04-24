@@ -1,11 +1,8 @@
 #include "../include/VariableResolver.h"
+#include "../include/IDialogInput.h"
 #include <iostream>
 #include <cctype>
 #include <sstream>
-
-VariableResolver::VariableResolver() {}
-
-VariableResolver::~VariableResolver() {}
 
 std::set<std::string> VariableResolver::extractVariables(const std::string& expression) {
     std::set<std::string> variables;
@@ -30,13 +27,11 @@ std::set<std::string> VariableResolver::extractVariables(const std::string& expr
     return variables;
 }
 
-void VariableResolver::resolveVariables(const std::set<std::string>& variables, std::map<std::string, double>& variableValues) {
+void VariableResolver::resolveVariables(const std::set<std::string>& variables, std::map<std::string, double>& variableValues, const IDialogInput& inputResolver) {
     for (const auto& var : variables) {
         if (variableValues.find(var) == variableValues.end()) {
-            std::cout << "Enter value for " << var << ": ";
-            double value;
-            std::cin >> value;
-            variableValues[var] = value;
+            // Use the input resolver to get the variable's value
+            variableValues[var] = inputResolver.resolveVariable(var);
         }
     }
 }
