@@ -2,17 +2,17 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "Inode.h"
+#include "INode.h"
 #include <string>
 #include <map>
 #include <sstream>
 
 class Parser {
 public:
-    Inode* parse(const std::string& expression, std::map<std::string, double>& variables);
-    Inode* parseExpression(std::istringstream& stream, std::map<std::string, double>& variables);
-    Inode* parseTerm(std::istringstream& stream, std::map<std::string, double>& variables);
-    Inode* parseFactor(std::istringstream& stream, std::map<std::string, double>& variables);
+    INode* parse(const std::string& expression, std::map<std::string, double>& variables);
+    INode* parseExpression(std::istringstream& stream, std::map<std::string, double>& variables);
+    INode* parseTerm(std::istringstream& stream, std::map<std::string, double>& variables);
+    INode* parseFactor(std::istringstream& stream, std::map<std::string, double>& variables);
 };
 
 #endif // PARSER_H

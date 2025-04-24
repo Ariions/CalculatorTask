@@ -1,9 +1,9 @@
 #ifndef VALUE_H
 #define VALUE_H
 
-#include "Inode.h"
+#include "INode.h"
 
-class Value : public Inode {
+class Value : public INode {
 private:
     double value;
 

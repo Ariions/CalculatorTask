@@ -15,7 +15,7 @@ std::pair<double, std::string> resolveExpression(const std::string& expression, 
 
     // Parse the expression into an AST
     Parser parser;
-    Inode* root = parser.parse(expression, variables);
+    INode* root = parser.parse(expression, variables);
 
     // Reconstruct the expression with substituted values
     std::string reconstructedExpression = root->print();

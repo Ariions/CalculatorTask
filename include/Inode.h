@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
-class Inode {
+class INode {
 public:
-    virtual ~Inode() = default;
+    virtual ~INode() = default;
     virtual double calc() const = 0;
     virtual std::string print() const = 0;
 };

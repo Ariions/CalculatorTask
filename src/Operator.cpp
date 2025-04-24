@@ -14,7 +14,7 @@ const std::map<std::string, std::function<double(double, double)>> Operator::ope
     }}
 };
 
-Operator::Operator(const std::string& op, Inode* l, Inode* r)
+Operator::Operator(const std::string& op, INode* l, INode* r)
     : op(op), left(l), right(r) {
     // Check for null operands
     if (!left || !right) {
