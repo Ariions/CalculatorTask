@@ -1,6 +1,6 @@
 #include "../include/Parser.h"
 #include "../include/VariableResolver.h"
-#include "../include/ExpressionEvaluator.h"
+#include "../include/ExpretionResolver.h"
 #include "../src/TerminalInput.cpp"
 #include <map>
 #include <set>
@@ -10,14 +10,13 @@ int main() {
     try {
         TerminalInput input;
 
-        // Get the expression
         std::string expression = input.getExpression();
 
-        // Evaluate the expression
-        double result = evaluateExpression(expression, input);
+        auto [result, reconstructedExpression] = resolveExpression(expression, input);
 
-        // Output the result
-        std::cout << "Result: " << result << std::endl;
+        // Output the result and the reconstructed expression
+        std::cout << reconstructedExpression << std::endl;
+        std::cout << result << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }

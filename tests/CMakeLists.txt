@@ -21,7 +21,7 @@ add_executable(UnitTests ${UNIT_TEST_SOURCES}
     ${PROJECT_SOURCE_DIR}/src/Value.cpp
     ${PROJECT_SOURCE_DIR}/src/Parser.cpp
     ${PROJECT_SOURCE_DIR}/src/VariableResolver.cpp
-    ${PROJECT_SOURCE_DIR}/src/ExpressionEvaluator.cpp
+    ${PROJECT_SOURCE_DIR}/src/ExpretionResolver.cpp
 )
 target_include_directories(UnitTests PRIVATE ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(UnitTests gtest gtest_main)
@@ -36,7 +36,7 @@ gtest_discover_tests(UnitTests
 # Add integration tests
 file(GLOB INTEGRATION_TEST_SOURCES "integration/*.cpp") # Automatically include all .cpp files in the integration folder
 add_executable(IntegrationTests ${INTEGRATION_TEST_SOURCES}
-    ${PROJECT_SOURCE_DIR}/src/ExpressionEvaluator.cpp
+    ${PROJECT_SOURCE_DIR}/src/ExpretionResolver.cpp
     ${PROJECT_SOURCE_DIR}/src/Operator.cpp
     ${PROJECT_SOURCE_DIR}/src/Value.cpp
     ${PROJECT_SOURCE_DIR}/src/Parser.cpp
