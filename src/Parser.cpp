@@ -62,6 +62,9 @@ Inode* Parser::parseTerm(std::istringstream& stream, std::map<std::string, doubl
             } else {
                 left = new Div(left, right);
             }
+        } else if (std::isalpha(op) || op == '(') {
+            Inode* right = parseFactor(stream, variables);
+            left = new Mul(left, right);
         } else {
             break;
         }
@@ -74,7 +77,20 @@ Inode* Parser::parseFactor(std::istringstream& stream, std::map<std::string, dou
     stream >> std::ws; // Skip whitespace
     char next = stream.peek();
 
-    if (std::isdigit(next) || next == '.') {
+    if (next == '-') {
+        // Handle unary minus
+        stream.get(); // Consume the '-'
+        if (std::isdigit(stream.peek()) || stream.peek() == '.') {
+            // parse a negative number
+            double value;
+            stream >> value;
+            return new Value(-value);
+        } else {
+            // Negate the result of the next factor
+            Inode* operand = parseFactor(stream, variables);
+            return new Mul(new Value(-1), operand); // Multiply by -1 to negate
+        }
+    } else if (std::isdigit(next) || next == '.') {
         // Parse a numeric value
         double value;
         stream >> value;
