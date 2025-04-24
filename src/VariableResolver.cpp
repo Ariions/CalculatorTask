@@ -30,7 +30,6 @@ std::set<std::string> VariableResolver::extractVariables(const std::string& expr
 void VariableResolver::resolveVariables(const std::set<std::string>& variables, std::map<std::string, double>& variableValues, const IDialogInput& inputResolver) {
     for (const auto& var : variables) {
         if (variableValues.find(var) == variableValues.end()) {
-            // Use the input resolver to get the variable's value
             variableValues[var] = inputResolver.resolveVariable(var);
         }
     }

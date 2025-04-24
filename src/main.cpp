@@ -1,7 +1,7 @@
 #include "../include/Parser.h"
 #include "../include/VariableResolver.h"
 #include "../include/ExpressionEvaluator.h"
-#include "../src/TerminalInput.cpp" // Include the terminal input handler
+#include "../src/TerminalInput.cpp"
 #include <map>
 #include <set>
 #include <iostream>

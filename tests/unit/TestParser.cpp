@@ -3,7 +3,6 @@
 #include "../../include/Value.h"
 #include "../../include/VariableResolver.h"
 
-// Test for parsing a simple numeric value
 TEST(ParserClass, ParseSimpleValue) {
     std::istringstream stream("42");
     std::map<std::string, double> variables;
@@ -13,7 +12,6 @@ TEST(ParserClass, ParseSimpleValue) {
     delete node;
 }
 
-// Test for parsing a variable
 TEST(ParserClass, ParseVariable) {
     std::istringstream stream("x");
     std::map<std::string, double> variables = {{"x", 5.0}};
@@ -23,7 +21,6 @@ TEST(ParserClass, ParseVariable) {
     delete node;
 }
 
-// Test for parsing a negative number
 TEST(ParserClass, ParseNegativeNumber) {
     std::istringstream stream("-42");
     std::map<std::string, double> variables;
@@ -33,7 +30,6 @@ TEST(ParserClass, ParseNegativeNumber) {
     delete node;
 }
 
-// Test for parsing a complex expression
 TEST(ParserClass, ParseComplexExpression) {
     std::istringstream stream("(3 + 4) * 2");
     std::map<std::string, double> variables;

@@ -2,7 +2,6 @@
 #include "../../include/VariableResolver.h"
 #include "../util/MockInputHandler.cpp"
 
-// Test for extracting variables from an expression
 TEST(VariableResolverClass, ExtractVariables) {
     VariableResolver resolver;
     std::set<std::string> variables = resolver.extractVariables("x + y * z");
@@ -12,7 +11,6 @@ TEST(VariableResolverClass, ExtractVariables) {
     EXPECT_TRUE(variables.find("z") != variables.end());
 }
 
-// Test for resolving variables
 TEST(VariableResolverClass, ResolveVariables) {
     VariableResolver resolver;
     std::set<std::string> variables = {"x", "y"};

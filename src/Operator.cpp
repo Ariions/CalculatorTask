@@ -1,8 +1,8 @@
 #include "../include/Operator.h"
 #include <stdexcept>
-#include <cmath> // For std::pow and std::log
-#include <functional> // For std::function
-#include <map> // For std::unordered_map
+#include <cmath>
+#include <functional> 
+#include <map> 
 
 const std::map<std::string, std::function<double(double, double)>> Operator::operations = {
     {"+", [](double l, double r) { return l + r; }},

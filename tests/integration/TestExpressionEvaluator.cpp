@@ -2,40 +2,34 @@
 #include "../../include/ExpressionEvaluator.h"
 #include "../util/MockInputHandler.cpp"
 
-// Test for evaluating a simple expression
 TEST(ExpressionEvaluatorClass, EvaluateSimpleExpression) {
     MockInputHandler mockInput("3 + 4", {});
     double result = evaluateExpression(mockInput.getExpression(), mockInput);
     EXPECT_DOUBLE_EQ(result, 7.0);
 }
 
-// Test for evaluating an expression with variables
 TEST(ExpressionEvaluatorClass, EvaluateExpressionWithVariables) {
     MockInputHandler mockInput("x + y", {{"x", 5.0}, {"y", 3.0}});
     double result = evaluateExpression(mockInput.getExpression(), mockInput);
     EXPECT_DOUBLE_EQ(result, 8.0);
 }
 
-// Test for evaluating a complex expression
 TEST(ExpressionEvaluatorClass, EvaluateComplexExpression) {
     MockInputHandler mockInput("(x + y) * z", {{"x", 2.0}, {"y", 3.0}, {"z", 4.0}});
     double result = evaluateExpression(mockInput.getExpression(), mockInput);
     EXPECT_DOUBLE_EQ(result, 20.0);
 }
 
-// Test for division by zero
 TEST(ExpressionEvaluatorClass, DivisionByZero) {
     MockInputHandler mockInput("10 / 0", {});
     EXPECT_THROW(evaluateExpression(mockInput.getExpression(), mockInput), std::runtime_error);
 }
 
-// Test for empty expression
 TEST(ExpressionEvaluatorClass, EmptyExpression) {
     MockInputHandler mockInput("", {});
     EXPECT_THROW(evaluateExpression(mockInput.getExpression(), mockInput), std::runtime_error);
 }
 
-// Test for undefined variable
 TEST(ExpressionEvaluatorClass, UndefinedVariable) {
     MockInputHandler mockInput("x + y", {{"x", 5.0}});
     EXPECT_THROW(evaluateExpression(mockInput.getExpression(), mockInput), std::runtime_error);
