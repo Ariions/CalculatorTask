@@ -14,7 +14,7 @@ class Operator : public INode {
 public:
     Operator(const std::string& op, INode* l, INode* r);
     ~Operator() override {
-#ifndef TEST_BUILD
+#ifndef ON_STACK
         delete left;
         delete right;
 #endif

@@ -27,7 +27,7 @@ target_include_directories(UnitTests PRIVATE ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(UnitTests gtest gtest_main)
 
 # Define TEST_BUILD macro for UnitTests
-target_compile_definitions(UnitTests PRIVATE TEST_BUILD)
+target_compile_definitions(UnitTests PRIVATE ON_STACK)
 
 # Register unit tests with CTest
 include(GoogleTest)
@@ -47,9 +47,6 @@ add_executable(IntegrationTests ${INTEGRATION_TEST_SOURCES}
 )
 target_include_directories(IntegrationTests PRIVATE ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(IntegrationTests gtest gtest_main)
-
-# Define TEST_BUILD macro for IntegrationTests
-target_compile_definitions(IntegrationTests PRIVATE TEST_BUILD)
 
 # Register integration tests with CTest
 gtest_discover_tests(IntegrationTests
